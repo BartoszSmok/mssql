@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  sqlsrv:
+    container_name: sqlsrv
+    image: mcr.microsoft.com/mssql/server:2019-CU11-ubuntu-20.04
+
+  mssqldocker:
+    image: ${DOCKER_REGISTRY-}mssqldocker
+    build:
+      context: .
+      dockerfile: MSSQLDOCKER/Dockerfile

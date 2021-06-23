@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  sqlsrv:
+    ports:
+      - "9433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "_Password123"
+      MSSQL_PID: Express
+
+  mssqldocker:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:CS=Server=sqlsrv;Database=testdb;User Id=sa;Password=_Password123"
+    depends_on:
+      - sqlsrv
+    ports:
+      - "9010:80"
